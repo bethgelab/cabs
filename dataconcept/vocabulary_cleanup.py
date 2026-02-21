@@ -9,15 +9,13 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from difflib import SequenceMatcher
 
-# NLTK setup
 nltk.download("wordnet")
 nltk.download("omw-1.4")
 
 lemmatizer = WordNetLemmatizer()
 
-# Load sentence transformer model
 print("Loading sentence-transformers model...")
-model = SentenceTransformer('all-MiniLM-L6-v2')  # Fast and efficient
+model = SentenceTransformer('all-MiniLM-L6-v2')
 
 
 # ---------------------------------------------------------
@@ -167,8 +165,6 @@ def are_words_spelling_variants(word1, word2):
     Check if two words are spelling variants or abbreviations.
     Examples: "hair drier" vs "hair dryer", "rv" vs "recreational vehicle"
     """
-    from difflib import SequenceMatcher
-    
     w1_lower = word1.lower()
     w2_lower = word2.lower()
     

@@ -4,6 +4,12 @@
 
 This is the official codebase for the paper [Concept-Aware Batch Sampling Improves Language-Image Pretraining](https://arxiv.org/pdf/2511.20643) by [Adhiraj Ghosh](https://adhirajghosh.github.io/), [Vishaal Udandarao](http://vishaal27.github.io/)\*, [Thao Nguyen](https://thaonguyen19.github.io/)\*, [Matteo Farina](https://farinamatteo.github.io/)\*, [Mehdi Cherti](https://mehdidc.github.io/), [Jenia Jitsev](https://orcid.org/0000-0002-1221-7851), [Sewoong Oh](https://homes.cs.washington.edu/~sewoong/), [Elisa Ricci](http://eliricci.eu/), [Ludwig Schmidt](https://people.csail.mit.edu/ludwigs/), [Matthias Bethge](https://scholar.google.com/citations?user=0z0fNxUAAAAJ).
 
+## Updates
+
+- **Feb 2026**: CABS accepted at CVPR 2026. See you in Denver!
+- **Feb 2026**: [DataConcept_128M](https://huggingface.co/datasets/bethgelab/dataconcept_128M) released on HuggingFace.
+- **Nov 2025**: CABS is out on [arXiv](https://arxiv.org/abs/2511.20643).
+
 ## Contents
 
 - [CABS Checkpoints](#cabs-checkpoints)
@@ -13,13 +19,15 @@ This is the official codebase for the paper [Concept-Aware Batch Sampling Improv
   - [Running Bounding Box Annotation](#running-bounding-box-annotation)
   - [Running Recaptioning](#running-recaptioning)
 - [Training With CABS](#training-with-cabs)
+  - [Key Parameters](#key-parameters)
+  - [Relating Batch Size, Epochs, And Filter Ratio](#relating-batch-size-epochs-and-filter-ratio)
 - [Citation](#citation)
 - [Acknowledgements](#acknowledgements)
 - [Contact](#contact)
 
 ## CABS Checkpoints
 
-*Will be updated soon.*
+*Will be updated with more model architectures soon.*
 
 All CABS variants are trained with a filter ratio (e.g. 0.8), indicated in the table below. We find that 0.8 is the best ratio for both Diversity Maximisation (CABS-DM) and Frequency-Maximisation (CABS-FM).
 
@@ -40,11 +48,11 @@ Note: if you require the checkpoints as .pt files, please let us know.
 
 The DataConcept pipeline enriches image-text datasets with sample-level annotations in three stages:
 
-1. **RAM++ tagging** — open-set image tagging using [RAM++](https://github.com/xinyu1205/recognize-anything) with a Swin-L backbone. Produces per-image tags and confidence scores.
+1. **RAM++ tagging** — open-set image tagging using [RAM++](https://github.com/xinyu1205/recognize-anything) with a Swin-L backbone. Produces per-image tags.
 
-2. **GroundingDINO detection** — grounded object detection using [GroundingDINO](https://github.com/IDEA-Research/GroundingDINO) conditioned on the RAM++ tags. Runs at multiple image scales with weighted box fusion to produce high-quality bounding boxes and class labels.
+2. **GroundingDINO detection** — grounded object detection using [GroundingDINO](https://github.com/IDEA-Research/GroundingDINO) conditioned on the RAM++ tags. Runs at multiple image scales with weighted box fusion to produce high-quality bounding boxes, confidence scores and class labels.
 
-3. **Qwen2-VL recaptioning** — recaption images using [Qwen2-VL-7B-Instruct](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct), guided by both the original alt-text and the detected object classes. The VLM is loaded via HuggingFace Transformers, so you can easily swap in a newer or larger model.
+3. **Qwen2-VL recaptioning** — recaption images using [Qwen2-VL-7B-Instruct](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct), guided by both the original alt-text and the detected concepts. The VLM is loaded via HuggingFace Transformers, so you can easily swap in a newer or larger model.
 
 We release [DataConcept_128M](https://huggingface.co/datasets/bethgelab/dataconcept_128M), a large-scale dataset annotated with this pipeline. We would appreciate the community's help in converting more image-text datasets into DataConcept-style pretraining datasets with sample-level concept annotations and bounding boxes.
 

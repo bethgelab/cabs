@@ -503,7 +503,7 @@ def parse_args(args):
         "--remote-sync",
         type=str,
         default=None,
-        help="Optinoally sync with a remote path specified by this arg",
+        help="Optionally sync with a remote path specified by this arg",
     )
     parser.add_argument(
         "--remote-sync-frequency",

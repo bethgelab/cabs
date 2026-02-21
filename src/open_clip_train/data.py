@@ -8,7 +8,6 @@ import sys
 import braceexpand
 from dataclasses import dataclass
 from multiprocessing import Value
-import json
 import numpy as np
 import pandas as pd
 import torch
@@ -198,26 +197,6 @@ def log_and_continue(exn):
     logging.warning(f'Handling webdataset error ({repr(exn)}). Ignoring.')
     return True
 
-
-# CHANGES
-
-def decode_json(sample):
-    if 'json' in sample:
-        sample['meta'] = sample['json']  # Parse JSON once
-    return sample
-
-
-def extract_fields_classes(sample):
-    if 'meta' in sample:
-        sample['text'] = sample['meta'].get('recap', '')
-        sample['classes'] = sample['meta'].get('classes', [])
-    return sample
-
-
-def extract_fields(sample):
-    if 'meta' in sample:
-        sample['text'] = sample['meta'].get('recap', '')
-    return sample
 
 
 def process_metadata_cabs_recap(sample):

@@ -22,5 +22,7 @@ logs/
 *.log
 
 # data
-data/
 *.tar
+
+# extra scripts (not part of the release)
+extra/

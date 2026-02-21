@@ -1,7 +1,6 @@
 import glob
 import logging
 import os
-import re
 import subprocess
 import sys
 import random
@@ -14,10 +13,6 @@ import open_clip
 import regex as re
 from torch import optim
 import torch.multiprocessing as mp
-
-# from multiprocessing import Manager
-
-# mp.set_start_method('fork', force=True)
 
 try:
     import wandb
@@ -575,9 +570,3 @@ def copy_codebase(args):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
-
-# TODO before running jobs
-# MEASURE THROUGHPUT
-# GPU usage, make sure it is high.
-# wandb offline, make it a flag. save disk first and then sweep from login node.
-# init loss, whether it makes sense (4096 -> 8.6)

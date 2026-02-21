@@ -119,7 +119,6 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
                     super_classes=super_classes,
                     target_batch_size=target*args.world_size,
                     max_concept_frequency=args.per_gpu_frequency,
-                    gibbs_sampling=args.gibbs,
                     )
 
             images = super_images[final_indices].to(device, dtype=input_dtype, non_blocking=True)
