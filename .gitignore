@@ -1,0 +1,26 @@
+# GroundingDINO is an external dependency with its own git repo — clone separately
+dataconcept/detection/GroundingDINO/
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.eggs/
+build/
+dist/
+
+# model weights and caches
+*.pth
+*.ckpt
+*.pkl
+.cache/
+
+# outputs
+results/
+logs/
+*.log
+
+# data
+data/
+*.tar

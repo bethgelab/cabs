@@ -1,0 +1,38 @@
+torch
+torchvision
+transformers
+accelerate
+numpy
+Pillow
+tqdm
+scipy
+
+# ram++ dependencies
+timm==0.4.12
+fairscale==0.4.4
+pycocoevalcap
+
+# grounding dino dependencies (also install GroundingDINO itself, see README)
+addict
+yapf
+pyyaml
+termcolor
+opencv-python
+supervision>=0.22.0
+pycocotools
+
+# detection ensemble
+ensemble-boxes
+
+# clip (used by ram++ for openset embeddings)
+ftfy
+regex
+clip @ git+https://github.com/openai/CLIP.git
+
+# captioning analysis
+nltk
+python-Levenshtein
+
+# vocabulary curation
+sentence-transformers
+scikit-learn

@@ -1,0 +1,83 @@
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project]
+name = "cabs"
+
+authors = [
+    {name = "Adhiraj Ghosh", email = "adhirajghosh1998@gmail.com"},
+]
+description = ""
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ["pytorch", "clip", "image-text", "language-image", "multimodal"]
+license = {text = "MIT"}
+classifiers = [
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Education',
+        'Intended Audience :: Science/Research',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+        'Topic :: Scientific/Engineering',
+        'Topic :: Scientific/Engineering :: Artificial Intelligence',
+        'Topic :: Software Development',
+        'Topic :: Software Development :: Libraries',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+]
+dependencies = [
+    'torch>=2.0',
+    'torchvision',
+    'numpy',
+    'regex',
+    'ftfy',
+    'tqdm',
+    'huggingface-hub',
+    'safetensors',
+    'timm>=1.0.17',
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+training = [
+    'torch>=2.0',
+    'webdataset>=0.2.5,<=0.2.86',
+    'pandas',
+    'transformers[sentencepiece]',
+    'timm>=1.0.17',
+    'fsspec',
+    'wandb',
+    'numba',
+    'matplotlib',
+    'braceexpand',
+    'Pillow',
+    'nltk',
+    'requests',
+]
+test = [
+    'pytest-split',
+    'pytest',
+    'open_clip_torch[training]'
+]
+
+[project.urls]
+homepage = "https://cabs-vlp.github.io"
+repository = "https://github.com/bethgelab/cabs"
+
+[tool.pdm.version]
+source = "file"
+path = "src/open_clip/version.py"
+
+[tool.pdm.build]
+excludes = ["./**/.git", "./**/logs/*"]
+package-dir = "src"
+includes = ["src/open_clip", "src/open_clip_train"]
+
+[tool.pytest.ini_options]
+testpaths = ['tests']
+markers = [
+    'regression_test'
+]
